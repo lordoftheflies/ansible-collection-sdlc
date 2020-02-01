@@ -1,5 +1,7 @@
 .idea/
-
+.ansible-galaxy
 *.retry
 */__pycache__
 *.pyc
+collections/
+roles/
