@@ -1,0 +1,16 @@
+---
+roles:
+  - name: lordoftheflies.ansible_role_nagios
+    src: git@github.com:lordoftheflies/ansible-role-nagios.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_apache2
+    src: git@github.com:lordoftheflies/ansible-role-apache2.git
+    version: master
+    scm: git
+
+collections:
+  - name: lordoftheflies.ansible_collection_freeipa
+    version: '*'
+    source: https://galaxy.ansible.com

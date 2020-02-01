@@ -1,0 +1,52 @@
+@startuml
+
+package "Development" {
+HTT2P - [First Component]
+[Another Component]
+}
+
+package "Operations" {
+FTP - [Second Component]
+
+[First Component] --> FTP
+}
+
+
+node "Ansible Repository" as as {
+component "Ansible Galaxy" <<web-app>> as ag
+artifact "Ansible Role" as ar
+artifact "Ansible Collection" as ac
+artifact "Ansible Playbook" as ap
+ag <-l-> HTTP
+ag <-r-> GIT
+ag .d.> ar
+ag ..> ac
+ag ..> ap
+ac "1" *-> "0..*" ar: Contains\nroles
+ap "1" *-> "0..*" ar: Contains\nroles
+ap "1" *-> "0..*" ac: Contains\ncollections
+}
+
+node "Ansible Controller" <<workstation>> as am {
+component "OpenSSH" as oa
+component "Ansible CLI" as ab
+}
+
+cloud "Ansible Managed Nodes" as amn {
+
+}
+
+as ...> am: Download roles,\nplaybooks,\ncollections.
+as <... am: Upload roles
+
+am -(0-> amn: SSH
+
+frame "yavin" as yavin {
+
+component "Git"
+component "Git"
+component "GitLab"
+component "Docker"
+}
+
+@enduml
