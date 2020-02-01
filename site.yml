@@ -1,0 +1,51 @@
+---
+- name: "Playbook to configure IPA server"
+  hosts: ipaserver
+  become: yes
+  roles:
+    - role: ansible_freeipa.ipaserver
+      state: present
+#  vars_files:
+#    - playbook_sensitive_data.yml
+
+- name: "Playbook to install IPA clients"
+  hosts: ipaclients
+  become: yes
+  roles:
+    - role: ipaclient
+      state: present
+
+      #- name: "Network Getting Started First Playbook"
+      #  connection: network_cli
+      #  gather_facts: false
+      #  hosts: web_servers
+      #  tasks:
+
+      #    - name: "Get config for VyOS devices"
+      #      vyos_facts:
+      #        gather_subset: all
+
+      #    - name: "Display the config"
+      #      debug:
+      #        msg: "The hostname is {{ ansible_net_hostname }} and the OS is {{ ansible_net_version }}"
+
+#    - name: "Update the hostname"
+#      vyos_config:
+#        backup: yes
+#        lines:
+#          - set system host-name vyos-changed
+
+#    - name: "Get changed config for VyOS devices"
+#      vyos_facts:
+#        gather_subset: all
+
+#    - name: "Display the changed config"
+#      debug:
+#        msg: "The hostname is {{ ansible_net_hostname }} and the OS is {{ ansible_net_version }}"
+
+#- hosts: web_servers
+#  gather_facts: True
+#  gather_subset: min
+#  module_defaults:
+#    eos_facts:
+#      gather_network_resources: interfaces

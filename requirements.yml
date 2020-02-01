@@ -1,5 +1,6 @@
 ---
 roles:
+
   - name: lordoftheflies.ansible_role_nagios
     src: git@github.com:lordoftheflies/ansible-role-nagios.git
     version: master
@@ -7,6 +8,21 @@ roles:
 
   - name: lordoftheflies.ansible_role_apache2
     src: git@github.com:lordoftheflies/ansible-role-apache2.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_jenkins
+    src: git@github.com:lordoftheflies/ansible-role-jenkins.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_nexus
+    src: git@github.com:lordoftheflies/ansible-role-nexus.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_sentry
+    src: git@github.com:lordoftheflies/ansible-role-sentry.git
     version: master
     scm: git
 
