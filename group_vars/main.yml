@@ -1,0 +1,8 @@
+---
+system_locale: 'hu_HU'
+system_language: 'en_US'
+
+domain: 'cherubits.hu'
+nodes:
+  - yavin
+  - coruscant

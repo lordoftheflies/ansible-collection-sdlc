@@ -1,4 +1,9 @@
 ---
+collections:
+  - name: lordoftheflies.ansible_collection_freeipa
+    version: '*'
+    source: https://galaxy.ansible.com
+
 roles:
 
   - name: lordoftheflies.ansible_role_nagios
@@ -26,7 +31,3 @@ roles:
     version: master
     scm: git
 
-collections:
-  - name: lordoftheflies.ansible_collection_freeipa
-    version: '*'
-    source: https://galaxy.ansible.com
