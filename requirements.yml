@@ -5,7 +5,7 @@ collections:
     source: https://galaxy.ansible.com
 
 roles:
-  - name: lordoftheflies.common
+  - name: lordoftheflies.common_role
     src: git@github.com:lordoftheflies/common_role.git
     version: master
     scm: git
