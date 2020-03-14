@@ -1,0 +1,14 @@
+---
+- name: "Remove IPA servers"
+  hosts: ipaserver
+  become: true
+  roles:
+  - role: ipaserver
+    state: absent
+
+- name: "Remove IPA clients"
+  hosts: ipaclients
+  become: true
+  roles:
+  - role: ipaclient
+    state: absent

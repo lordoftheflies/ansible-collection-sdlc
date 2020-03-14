@@ -5,29 +5,59 @@ collections:
     source: https://galaxy.ansible.com
 
 roles:
-
-  - name: lordoftheflies.ansible_role_nagios
-    src: git@github.com:lordoftheflies/ansible-role-nagios.git
+  - name: lordoftheflies.common
+    src: git@github.com:lordoftheflies/common_role.git
     version: master
     scm: git
 
-  - name: lordoftheflies.ansible_role_apache2
-    src: git@github.com:lordoftheflies/ansible-role-apache2.git
+  - name: lordoftheflies.nagios_role
+    src: git@github.com:lordoftheflies/nagios_role.git
     version: master
     scm: git
 
-  - name: lordoftheflies.ansible_role_jenkins
-    src: git@github.com:lordoftheflies/ansible-role-jenkins.git
+  - name: lordoftheflies.apache2_role
+    src: git@github.com:lordoftheflies/apache2_role.git
     version: master
     scm: git
 
-  - name: lordoftheflies.ansible_role_nexus
-    src: git@github.com:lordoftheflies/ansible-role-nexus.git
+  - name: lordoftheflies.java_role
+    src: git@github.com:lordoftheflies/java_role.git
     version: master
     scm: git
 
-  - name: lordoftheflies.ansible_role_sentry
-    src: git@github.com:lordoftheflies/ansible-role-sentry.git
+  - name: lordoftheflies.python_role
+    src: git@github.com:lordoftheflies/python_role.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.nodejs_role
+    src: git@github.com:lordoftheflies/nodejs_role.git
+    version: master
+    scm: git
+
+
+  - name: lordoftheflies.gitlab_role
+    src: git@github.com:lordoftheflies/gitlab_role.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.jenkins_role
+    src: git@github.com:lordoftheflies/jenkins_role.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.nexus_role
+    src: git@github.com:lordoftheflies/nexus_role.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.sentry_role
+    src: git@github.com:lordoftheflies/sentry_role.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.prometheus_role
+    src: git@github.com:lordoftheflies/prometheus_role.git
     version: master
     scm: git
 

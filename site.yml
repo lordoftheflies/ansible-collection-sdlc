@@ -4,19 +4,19 @@
   hosts: virtual_servers
   become: yes
   roles:
-    - role: common
+    - role: lordoftheflies.ansible_role_common
       state: present
   tags:
     - vps
 
-- name: "Playbook to configure IPA server"
-  hosts: ipaserver
-  become: yes
-  roles:
-    - role: ipaserver
-      state: present
-  tags:
-    - ipaserver
+#- name: "Playbook to configure IPA server"
+#  hosts: ipaserver
+#  become: yes
+#  roles:
+#    - role: ipaserver
+#      state: present
+#  tags:
+#    - ipaserver
 
 #- name: "Playbook to configure IPA server"
 #  hosts: virtual_servers
