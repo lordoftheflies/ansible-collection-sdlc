@@ -3,12 +3,88 @@
   hosts: ipaserver
   become: true
   roles:
-  - role: ipaserver
-    state: present
+    - role: ipaserver
+      state: present
 
 - name: "Install IPA clients"
   hosts: ipaclients
   become: true
   roles:
-  - role: ipaclient
-    state: present
+    - role: ipaclient
+      state: present
+
+- name: "Install Nexus servers"
+  hosts: nexus_servers
+  roles:
+    - role: lordoftheflies.ssl_role
+      state: present
+    - role: lordoftheflies.vhost_role
+      state: present
+    - role: lordoftheflies.nexus_role
+      state: present
+    - role: ipaclient
+      state: present
+
+- name: "Install Jenkins servers"
+  hosts: jenkins_servers
+  roles:
+    - role: lordoftheflies.ssl_role
+      state: present
+    - role: lordoftheflies.vhost_role
+      state: present
+    - role: lordoftheflies.jenkins_role
+      state: present
+    - role: ipaclient
+      state: present
+    - role: nagiosclient
+      state: present
+
+- name: "Install SonarQube servers"
+  hosts: sonarqube_servers
+  roles:
+    - role: lordoftheflies.ssl_role
+      state: present
+    - role: lordoftheflies.vhost_role
+      state: present
+    - role: lordoftheflies.sonarqube_role
+      state: present
+    - role: ipaclient
+      state: present
+    - role: nagiosclient
+      state: present
+
+- name: "Install GitLab servers"
+  hosts: gitlab_servers
+  roles:
+    - role: lordoftheflies.ssl_role
+      state: present
+    - role: lordoftheflies.vhost_role
+      state: present
+    - role: lordoftheflies.docker_role
+      state: present
+    - role: lordoftheflies.mattermost_role
+      state: present
+    - role: lordoftheflies.registry_role
+      state: present
+    - role: lordoftheflies.gitlab_role
+      state: present
+    - role: ipaclient
+      state: present
+    - role: nagiosclient
+      state: present
+
+- name: "Install GitLab runners"
+  hosts: gitlab_runners
+  roles:
+    - role: lordoftheflies.ssl_role
+      state: present
+    - role: lordoftheflies.vhost_role
+      state: present
+    - role: lordoftheflies.docker_role
+      state: present
+    - role: ipaclient
+      state: present
+    - role: nagiosclient
+      state: present
+    - role: lordoftheflies.runner_role
+      state: present
