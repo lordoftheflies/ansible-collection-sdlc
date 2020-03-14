@@ -18,7 +18,7 @@
   roles:
     - role: lordoftheflies.ssl_role
       state: present
-    - role: lordoftheflies.vhost_role
+    - role: lordoftheflies.virtualhost_role
       state: present
     - role: lordoftheflies.nexus_role
       state: present
@@ -30,7 +30,7 @@
   roles:
     - role: lordoftheflies.ssl_role
       state: present
-    - role: lordoftheflies.vhost_role
+    - role: lordoftheflies.virtualhost_role
       state: present
     - role: lordoftheflies.jenkins_role
       state: present
@@ -44,7 +44,7 @@
   roles:
     - role: lordoftheflies.ssl_role
       state: present
-    - role: lordoftheflies.vhost_role
+    - role: lordoftheflies.virtualhost_role
       state: present
     - role: lordoftheflies.sonarqube_role
       state: present
@@ -58,7 +58,7 @@
   roles:
     - role: lordoftheflies.ssl_role
       state: present
-    - role: lordoftheflies.vhost_role
+    - role: lordoftheflies.virtualhost_role
       state: present
     - role: lordoftheflies.docker_role
       state: present
@@ -78,7 +78,7 @@
   roles:
     - role: lordoftheflies.ssl_role
       state: present
-    - role: lordoftheflies.vhost_role
+    - role: lordoftheflies.virtualhost_role
       state: present
     - role: lordoftheflies.docker_role
       state: present

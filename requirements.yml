@@ -10,6 +10,21 @@ roles:
     version: master
     scm: git
 
+  - name: lordoftheflies.virtualhost_role
+    src: git@github.com:lordoftheflies/virtualhost_role.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ssl_role
+    src: git@github.com:lordoftheflies/ssl_role.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.timezone_role
+    src: git@github.com:lordoftheflies/timezone_role.git
+    version: master
+    scm: git
+
   - name: lordoftheflies.nagios_role
     src: git@github.com:lordoftheflies/nagios_role.git
     version: master
