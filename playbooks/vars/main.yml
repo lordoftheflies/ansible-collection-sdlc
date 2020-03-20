@@ -2,17 +2,81 @@
 heading: 'Ansible collection for SDLC'
 subheading: 'Ansible galaxy collection for software development lifecycle in aspect of software development capability maturity model integration.'
 requirements:
-  - See official Ansible docs
+    - See official Ansible docs
 
 organization:
-  name: Cherubits
-  type: LLC
+    name: Cherubits
+    type: LLC
+    level: 1
 
-ansible_galaxy:
-  roles:
-    lordoftheflies: {}
-  collections:
-    ansible_collections:
-      lordoftheflies: {}
+cmm:
+    levels:
+        - name: initial
+          level: 1
+        - name: managed
+          level: 2
+        - name: defined
+          level: 3
+        - name: quantitive
+          level: 4
+        - name: optimizing
+          level: 5
 
-meta: {}
+    areas:
+        support:
+            name: Support
+            processes:
+                car:
+                    name: Causal Analysis and Resolution
+                    level: [5]
+                cm:
+                    name: Configuration Management
+                    level: [2, 3, 4, 5]
+                dar:
+                    name: Decision Analysis and Resolution
+                    level: [3, 4, 5]
+                ma:
+                    name: Measurement and Analysis
+                    level: [2, 3, 4, 5]
+                ppqa:
+                    name: Process and Product Quality Assurance
+                    level: [2, 3, 4, 5]
+                sam:
+                    name: Supplier Agreement Management
+                    level: [2, 3, 4, 5]
+        project_management:
+            name: Project management
+            processes:
+                ipm:
+                    name: Integrated Project Management
+                    level: [3, 4, 5]
+                pmc:
+                    name: Project Monitoring and Control
+                    level: [2, 3, 4, 5]
+                pp:
+                    name: Project Planning
+                    level: [2, 3, 4, 5]
+                qpm:
+                    name: Quantitative Project Management
+                    level: [4, 5]
+                reqm:
+                    name: Requirements Management
+                    level: [2, 3, 4, 5]
+                rskm:
+                    name: Risk Management
+                    level: [3, 4, 5]
+        process_management:
+            name: Process management
+            processes:
+                opd:
+                    name: Organizational Process Definition
+                    level: [3, 4, 5]
+                opf:
+                    name: Organizational Process Focus
+                    level: [3, 4, 5]
+                opm:
+                    name: Organizational Performance Management
+                    level: [5]
+                opp:
+                    name: Organizational Process Performance
+                    level: [4, 5]

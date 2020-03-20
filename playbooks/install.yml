@@ -39,6 +39,8 @@
           loop_control:
             loop_var: collection_meta
 
+
+
       rescue:
 
         - debug: msg="Report generation failed."
@@ -51,6 +53,12 @@
           delegate_to: localhost
 
       always:
+        - name: "1st factor: Generate documentation about inventory"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-inventory.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/inventory.md"
 
         - name: "1st factor: Generate documentation about codebase"
           delegate_to: localhost
