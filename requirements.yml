@@ -1,10 +1,15 @@
 ---
 collections:
-  - name: lordoftheflies.ansible_collection_freeipa
+  - name: lordoftheflies.freeipa_collection
     version: '*'
     source: https://galaxy.ansible.com
 
 roles:
+#  - name: lordoftheflies.ansible_webdocs
+#    src: git@github.com:lordoftheflies/ansible-webdocs.git
+#    version: master
+#    scm: git
+
   - name: lordoftheflies.common_role
     src: git@github.com:lordoftheflies/common_role.git
     version: master

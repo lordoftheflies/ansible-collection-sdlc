@@ -1,90 +1,225 @@
 ---
-- name: "Install IPA servers"
-  hosts: ipaserver
-  become: true
-  roles:
-    - role: ipaserver
-      state: present
+- name: "Generate report and manual"
+  hosts: all
+  tasks:
+    - name: "Generate report from deployment"
+      block:
+        - name: "Include variables"
+          include_vars: vars/main.yml
 
-- name: "Install IPA clients"
-  hosts: ipaclients
-  become: true
-  roles:
-    - role: ipaclient
-      state: present
+        - name: "Get docs and examples for modules"
+          delegate_to: localhost
+          ansible_docstring: path=plugins/modules/
+          register: modules
 
-- name: "Install Nexus servers"
-  hosts: nexus_servers
-  roles:
-    - role: lordoftheflies.ssl_role
-      state: present
-    - role: lordoftheflies.virtualhost_role
-      state: present
-    - role: lordoftheflies.nexus_role
-      state: present
-    - role: ipaclient
-      state: present
+        - name: "Load dependencies"
+          run_once: true
+          delegate_to: localhost
+          include_vars:
+            file: "{{ lookup('env', 'PWD') }}/requirements.yml"
 
-- name: "Install Jenkins servers"
-  hosts: jenkins_servers
-  roles:
-    - role: lordoftheflies.ssl_role
-      state: present
-    - role: lordoftheflies.virtualhost_role
-      state: present
-    - role: lordoftheflies.jenkins_role
-      state: present
-    - role: ipaclient
-      state: present
-    - role: nagiosclient
-      state: present
+        - name: "Load metadata"
+          run_once: true
+          delegate_to: localhost
+          include_tasks: "tasks/metadata.yml"
 
-- name: "Install SonarQube servers"
-  hosts: sonarqube_servers
-  roles:
-    - role: lordoftheflies.ssl_role
-      state: present
-    - role: lordoftheflies.virtualhost_role
-      state: present
-    - role: lordoftheflies.sonarqube_role
-      state: present
-    - role: ipaclient
-      state: present
-    - role: nagiosclient
-      state: present
+        - name: "Load metadata for galaxy roles"
+          run_once: true
+          delegate_to: localhost
+          include_tasks: "tasks/roles-metadata.yml"
+          loop: "{{ roles }}"
+          loop_control:
+            loop_var: role_meta
 
-- name: "Install GitLab servers"
-  hosts: gitlab_servers
-  roles:
-    - role: lordoftheflies.ssl_role
-      state: present
-    - role: lordoftheflies.virtualhost_role
-      state: present
-    - role: lordoftheflies.docker_role
-      state: present
-    - role: lordoftheflies.mattermost_role
-      state: present
-    - role: lordoftheflies.registry_role
-      state: present
-    - role: lordoftheflies.gitlab_role
-      state: present
-    - role: ipaclient
-      state: present
-    - role: nagiosclient
-      state: present
+        - name: "Load metadata for galaxy collections"
+          run_once: true
+          delegate_to: localhost
+          include_tasks: "tasks/collections-metadata.yml"
+          loop: "{{ collections }}"
+          loop_control:
+            loop_var: collection_meta
 
-- name: "Install GitLab runners"
-  hosts: gitlab_runners
-  roles:
-    - role: lordoftheflies.ssl_role
-      state: present
-    - role: lordoftheflies.virtualhost_role
-      state: present
-    - role: lordoftheflies.docker_role
-      state: present
-    - role: ipaclient
-      state: present
-    - role: nagiosclient
-      state: present
-    - role: lordoftheflies.runner_role
-      state: present
+      rescue:
+
+        - debug: msg="Report generation failed."
+          delegate_to: localhost
+
+        - meta: clear_host_errors
+          delegate_to: localhost
+
+        - meta: end_play
+          delegate_to: localhost
+
+      always:
+
+        - name: "1st factor: Generate documentation about codebase"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-codebase.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/codebase.md"
+
+        - name: "2nd factor: Generate documentation about dependencies"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-dependencies.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/dependencies.md"
+
+        - name: "3rd factor: Generate documentation about configuration"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-configuration.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/configuration.md"
+
+        - name: "4th factor: Generate documentation about backing services"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-integration.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/integration.md"
+
+        - name: "5th factor: Generate documentation about build release and run"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-delivery.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/delivery.md"
+
+        - name: "6th factor: Generate documentation about processes"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-processes.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/processes.md"
+
+        - name: "7th factor: Generate documentation about port binding"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-binding.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/binding.md"
+
+        - name: "8th factor: Generate documentation about concurrency and scalability"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-concurrency.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/concurrency.md"
+
+        - name: "9th factor: Generate documentation about disposability"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-disposability.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/disposability.md"
+
+        - name: "10th factor: Generate documentation about dev/prod parity"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-parity.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/parity.md"
+
+        - name: "11th factor: Generate documentation about logging"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-logging.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/logging.md"
+
+        - name: "12th factor: Generate documentation about administration processes"
+          delegate_to: localhost
+          run_once: true
+          template:
+            src: templates/docs-administration.md.j2
+            dest: "{{ lookup('env', 'PWD') }}/docs/administration.md"
+
+#- name: "Install internal policy audit servers"
+#  hosts: ipaservers
+#  become: true
+#  ignore_errors: false
+#  roles:
+#    - role: ipaserver
+#      state: present
+#
+#- name: "Install private virtual servers"
+#  hosts: virtual_servers
+#  ignore_errors: true
+#  become: true
+#  roles:
+#    - role: ipaclient
+#      state: present
+#
+#- name: "Install static web sites webservers"
+#  hosts: web_servers
+#  become: true
+#  roles:
+#    - role: ipaclient
+#      state: present
+
+#
+#- name: "Install Jenkins servers"
+#  hosts: jenkins_servers
+#  roles:
+#    - role: lordoftheflies.ssl_role
+#      state: present
+#    - role: lordoftheflies.virtualhost_role
+#      state: present
+#    - role: lordoftheflies.jenkins_role
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: nagiosclient
+#      state: present
+#
+#- name: "Install SonarQube servers"
+#  hosts: sonarqube_servers
+#  roles:
+#    - role: lordoftheflies.ssl_role
+#      state: present
+#    - role: lordoftheflies.virtualhost_role
+#      state: present
+#    - role: lordoftheflies.sonarqube_role
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: nagiosclient
+#      state: present
+#
+#- name: "Install GitLab servers"
+#  hosts: gitlab_servers
+#  roles:
+#    - role: lordoftheflies.ssl_role
+#      state: present
+#    - role: lordoftheflies.virtualhost_role
+#      state: present
+#    - role: lordoftheflies.docker_role
+#      state: present
+#    - role: lordoftheflies.mattermost_role
+#      state: present
+#    - role: lordoftheflies.registry_role
+#      state: present
+#    - role: lordoftheflies.gitlab_role
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: nagiosclient
+#      state: present
+#
+#- name: "Install GitLab runners"
+#  hosts: gitlab_runners
+#  roles:
+#    - role: lordoftheflies.ssl_role
+#      state: present
+#    - role: lordoftheflies.virtualhost_role
+#      state: present
+#    - role: lordoftheflies.docker_role
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: nagiosclient
+#      state: present
+#    - role: lordoftheflies.runner_role
+#      state: present

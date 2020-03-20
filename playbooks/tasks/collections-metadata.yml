@@ -1,0 +1,18 @@
+---
+- name: "Load Galaxy metadata collections"
+  block:
+    - name: "Get JSON from the codebase"
+      uri:
+        url: "https://raw.githubusercontent.com/lordoftheflies/{{ collection_meta.name.split('.')[-1] }}/master/galaxy.yml"
+        return_content: true
+        method: GET
+      register: collection_meta_response
+      until: collection_meta_response.status == 200
+    - name: "Set collections metadata facts"
+      when: collection_meta_response is defined
+      set_fact:
+        ansible_galaxy_collection_meta: "{{ (ansible_galaxy_collection_meta|default({}))|combine({ collection_meta.name.replace('.', '_') : (collection_meta_response.content|from_yaml) }) }}"
+  rescue:
+    - debug: msg="Failed to fetch galaxy metadata for '{{ collection_meta.name }}'"
+  always:
+    - debug: var="ansible_galaxy_collection_meta.{{ collection_meta.name.replace('.', '_') }}"

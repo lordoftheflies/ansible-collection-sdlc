@@ -1,0 +1,16 @@
+---
+- name: "Load Galaxy metadata"
+  block:
+    - name: "Get JSON from the codebase"
+      include_vars:
+        file: "{{ lookup('env', 'PWD') }}/galaxy.yml"
+        name: "galaxy_meta"
+
+    - name: "Set collections metadata facts"
+      when: galaxy_meta is defined
+      set_fact:
+        ansible_galaxy_meta: "{{ galaxy_meta|default({}) }}"
+  rescue:
+    - debug: msg="Failed to fetch galaxy metadata for '{{ collection_meta.name }}'"
+  always:
+    - debug: var="ansible_galaxy_collection_meta.{{ collection_meta.name.replace('.', '_') }}"

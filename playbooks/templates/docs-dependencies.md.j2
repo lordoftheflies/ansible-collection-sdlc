@@ -1,0 +1,31 @@
+
+### Requirements
+{% if requirements is defined %}
+{% for req in requirements %}
+* {{ req }}
+{% endfor %}
+{% endif %}
+
+## Modules
+{% for doc in modules.results %}
+  * [{{ doc['module'] }} - {{ doc['short_description'].lower() }}](#{{ doc['module'] }})
+{% endfor %}
+
+
+## Roles
+| Name | Description | Version |
+| :--- | :--- | :--- |
+{% for key, value in ansible_galaxy_roles_meta.items() %}
+{% if value.galaxy_info is defined %}
+| [{% if value.galaxy_info.name is defined %}{{ value.galaxy_info.name }}{% else %}{{ key }}{% endif %}]({% if value.galaxy_info.issue_tracker_url is defined %}{{ value.galaxy_info.issue_tracker_url }}{% endif %}) | {% if value.galaxy_info.description is defined %}{{ value.galaxy_info.description }}{% endif %} | {% if value.galaxy_info.version is defined %}{{ value.galaxy_info.version }}{% endif %} |
+{% endif %}
+{% endfor %}
+
+
+## Collections
+| Name | Description | Version |
+| :--- | :--- | :--- |
+{% for key, value in ansible_galaxy_collections_meta.items() %}
+| [{% if value.name is defined %}{{ value.name }}{% else %}{{ key }}{% endif %}]({% if value.issues is defined %}{{ value.issues }}{% endif %}) | {% if value.description is defined %}{{ value.description }}{% endif %} | {% if value.version is defined %}{{ value.version }}{% endif %} |
+{% endfor %}
+

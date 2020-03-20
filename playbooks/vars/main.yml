@@ -1,0 +1,18 @@
+---
+heading: 'Ansible collection for SDLC'
+subheading: 'Ansible galaxy collection for software development lifecycle in aspect of software development capability maturity model integration.'
+requirements:
+  - See official Ansible docs
+
+organization:
+  name: Cherubits
+  type: LLC
+
+ansible_galaxy:
+  roles:
+    lordoftheflies: {}
+  collections:
+    ansible_collections:
+      lordoftheflies: {}
+
+meta: {}
