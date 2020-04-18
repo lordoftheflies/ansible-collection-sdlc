@@ -4,3 +4,4 @@ system_language: 'en_US'
 
 domain: 'cherubits.hu'
 
+ipaservers: 'ipa.cherubits.hu'
