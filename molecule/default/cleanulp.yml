@@ -1,0 +1,10 @@
+---
+- name: Cleanup
+  hosts: all
+
+  collections:
+    - lordoftheflies.ansible_collection_sdlc
+
+  tasks:
+    - name: "ddd"
+      debug: msg="kaka"

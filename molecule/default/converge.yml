@@ -6,12 +6,14 @@
     - lordoftheflies.ansible_collection_sdlc
 
   tasks:
-    - name: "Test the 'test_install' module."
-      test_install:
+
+    - name: "Execute the ansible_install module."
+      ansible_install:
         name: 'hello'
-        new: true
       register: testout
 
-    - name: "Debug the 'test_install' module's output"
-      debug:
-        msg: "{{ testout }}"
+    - name: "Validate the ansible_install module's output"
+      assert:
+        that:
+          - testout.original_message == 'hello'
+          - testout.message == 'goodbye'

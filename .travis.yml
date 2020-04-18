@@ -5,6 +5,7 @@ services: docker
 env:
   global:
     - COLLECTION_NAME: ansible-collection-sdlc
+    - COLLECTION_NAMESPACE: lordoftheflies
   matrix:
 #    - MOLECULE_DISTRO: centos6
 #      MOLECULE_PLAYBOOK: playbook-version.yml
@@ -41,10 +42,11 @@ install:
 
 before_script:
   - export GALACTICAL_COLLECTION_NAME=$(echo "$COLLECTION_NAME" | sed -r 's/-/_/g')
-  # Use actual Ansible Galaxy role name for the project directory.
+  # Move the collection into the required path.
   - cd ../
-  - mv $COLLECTION_NAME lordoftheflies.$GALACTICAL_COLLECTION_NAME
-  - cd lordoftheflies.$GALACTICAL_COLLECTION_NAME
+  - mkdir -p ansible_collections/$COLLECTION_NAMESPACE
+  - mv $COLLECTION_NAME ansible_collections/$COLLECTION_NAMESPACE/$GALACTICAL_COLLECTION_NAME
+  - cd ansible_collections/$COLLECTION_NAMESPACE/$GALACTICAL_COLLECTION_NAME
 
 script:
   # Run tests.
