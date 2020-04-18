@@ -5,3 +5,16 @@ system_language: 'en_US'
 domain: 'cherubits.hu'
 
 ipaservers: 'ipa.cherubits.hu'
+ipaadmin_password: 'qwe123qwe123'
+ipadm_password: 'qwe123qwe123'
+ipaserver_domain: 'cherubits.hu'
+ipaserver_realm: 'CHERUBITS.HU'
+ipaclient_use_otp: false
+ipaserver_setup_dns: false
+ipaserver_auto_forwarders: false
+ipaserver_install_packages: true
+ipaserver_setup_firewalld: false
+ipaserver_use_otp: false
+ipaserver_external_ca: false
+
+

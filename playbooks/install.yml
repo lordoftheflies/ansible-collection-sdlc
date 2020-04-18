@@ -30,11 +30,13 @@
   hosts: ipaservers
   become: true
   roles:
-    - role: lordoftheflies.ssl_role
+    - role: lordoftheflies.ansible_role_ssl
       state: present
-    - role: lordoftheflies.virtualhost_role
+    - role: lordoftheflies.ansible_role_virtualhost
       state: present
     - role: ipaserver
+      state: present
+    - role: lordoftheflies.ansible_role_reverse_proxy
       state: present
 
 - name: "Install Nagios Core"
