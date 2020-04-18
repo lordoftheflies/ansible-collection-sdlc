@@ -1,6 +1,6 @@
 namespace: lordoftheflies
 name: ansible_collection_sdlc
-version: 1.0.0
+version: 1.0.2
 readme: README.md
 authors:
 - László Hegedűs <laszlo.hegedus@cherubits.hu>
@@ -8,7 +8,8 @@ description: Ansible Collection for Software Development LifeCycle instrastructu
 license:
 - Apache-2.0
 license_file: LICENSE
-dependencies: {}
+dependencies:
+  "lordoftheflies.ansible_collection_freeipa": "*"
 repository: https://github.com/lordoftheflies/ansible-collection-sdlc
 documentation: https://lordoftheflies.github.io/ansible-collection-sdlc
 homepage: https://galaxy.ansible.com/lordoftheflies/ansible_collection_sdlc
