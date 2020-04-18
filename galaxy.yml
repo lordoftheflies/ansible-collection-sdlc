@@ -1,18 +1,18 @@
 namespace: lordoftheflies
-name: sdlc_collection
+name: ansible-collection-sdlc
 version: 1.0.0
 readme: README.md
 authors:
 - László Hegedűs <laszlo.hegedus@cherubits.hu>
-description: Software development lifecycle infrastructure playbook for Cherubits.
+description: Ansible Collection for Software Development LifeCycle instrastructure.
 license:
 - Apache-2.0
 license_file: LICENSE
 dependencies: {}
-repository: https://github.com/lordoftheflies/sdlc_collection
-documentation: http://portal.cherubits.hu/docs
-homepage: https://github.com/lordoftheflies/sdlc_collection
-issues: https://github.com/lordoftheflies/sdlc_collection/issues
+repository: https://github.com/lordoftheflies/ansible-collection-sdlc
+documentation: https://lordoftheflies.github.io/ansible-collection-sdlc
+homepage: https://galaxy.ansible.com/lordoftheflies/ansible-collection-sdlc
+issues: https://github.com/lordoftheflies/ansible-collection-sdlc/issues
 tags:
   - cherubits
   - sdlc

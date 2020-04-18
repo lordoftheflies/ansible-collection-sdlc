@@ -1,0 +1,17 @@
+---
+- name: Converge
+  hosts: all
+
+  collections:
+    - lordoftheflies.ansible_collection_sdlc
+
+  tasks:
+    - name: "Test the 'test_install' module."
+      test_install:
+        name: 'hello'
+        new: true
+      register: testout
+
+    - name: "Debug the 'test_install' module's output"
+      debug:
+        msg: "{{ testout }}"

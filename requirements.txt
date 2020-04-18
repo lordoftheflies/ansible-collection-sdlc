@@ -1,1 +1,5 @@
 ansible==2.9.5
+molecule
+yamllint
+ansible-lint
+docker
