@@ -1,5 +1,5 @@
 namespace: lordoftheflies
-name: ansible-collection-sdlc
+name: ansible_collection_sdlc
 version: 1.0.0
 readme: README.md
 authors:
@@ -11,7 +11,7 @@ license_file: LICENSE
 dependencies: {}
 repository: https://github.com/lordoftheflies/ansible-collection-sdlc
 documentation: https://lordoftheflies.github.io/ansible-collection-sdlc
-homepage: https://galaxy.ansible.com/lordoftheflies/ansible-collection-sdlc
+homepage: https://galaxy.ansible.com/lordoftheflies/ansible_collection_sdlc
 issues: https://github.com/lordoftheflies/ansible-collection-sdlc/issues
 tags:
   - cherubits
