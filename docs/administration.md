@@ -2,8 +2,6 @@
 
 ## Requirements
 
-
-
 * See official Ansible docs
 
 

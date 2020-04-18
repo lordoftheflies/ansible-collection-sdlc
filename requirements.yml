@@ -80,4 +80,3 @@ roles:
     src: git@github.com:lordoftheflies/prometheus_role.git
     version: master
     scm: git
-

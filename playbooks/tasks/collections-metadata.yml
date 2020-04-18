@@ -15,4 +15,4 @@
   rescue:
     - debug: msg="Failed to fetch galaxy metadata for '{{ collection_meta.name }}'"
   always:
-    - debug: var="ansible_galaxy_collection_meta.{{ collection_meta.name.replace('.', '_') }}"
+    - debug: var="ansible_galaxy_collection_meta"
