@@ -1,0 +1,100 @@
+---
+collections:
+  - name: lordoftheflies.ansible_collection_freeipa
+    version: '*'
+    source: https://galaxy.ansible.com
+
+roles:
+#  - name: lordoftheflies.ansible_webdocs
+#    version: *
+
+  - name: lordoftheflies.ansible_role_reverse_proxy
+    version: *
+
+  - name: lordoftheflies.ansible_role_virtualhost
+    version: *
+    
+  - name: lordoftheflies.ansible_role_ssl
+    version: *
+    
+  - name: lordoftheflies.ansible_role_timezone
+    version: *
+    
+  - name: lordoftheflies.ansible_role_locale
+    version: *
+    
+  - name: lordoftheflies.ansible_role_apache2
+    version: *
+    
+  - name: lordoftheflies.ansible_role_nginx
+    version: *
+    
+  - name: lordoftheflies.ansible_role_java
+    version: *
+    
+  - name: lordoftheflies.ansible_role_python
+    version: *
+    
+  - name: lordoftheflies.ansible_role_nodejs
+    version: *
+    
+  - name: lordoftheflies.ansible_role_mysql
+    version: *
+    
+  - name: lordoftheflies.ansible_role_postgresql
+    version: *
+    
+  - name: lordoftheflies.ansible_role_vagrant
+    version: *
+    
+  - name: lordoftheflies.ansible_role_nagios_core
+    version: *
+    
+  - name: lordoftheflies.ansible_role_nagios_remote_plugin_executor
+    version: *
+    
+  - name: lordoftheflies.ansible_role_nexus
+    version: *
+    
+  - name: lordoftheflies.ansible_role_sonarqube
+    version: *
+    
+  - name: lordoftheflies.ansible_role_mattermost
+    version: *
+    
+  - name: lordoftheflies.ansible_role_sentry
+    version: *
+    
+  - name: lordoftheflies.ansible_role_prometheus
+    version: *
+    
+  - name: lordoftheflies.ansible_role_grafana
+    version: *
+    
+  - name: lordoftheflies.ansible_role_wildfly
+    version: *
+    
+  - name: lordoftheflies.ansible_role_plantuml
+    version: *
+    
+  - name: lordoftheflies.ansible_role_elasticsearch
+    version: *
+    
+  - name: lordoftheflies.ansible_role_logstash
+    version: *
+    
+  - name: lordoftheflies.ansible_role_kibana
+    version: *
+    
+  - name: lordoftheflies.ansible_role_gitlab_server
+    version: *
+    
+  - name: lordoftheflies.ansible_role_gitlab_runner
+    version: *
+    
+  - name: lordoftheflies.ansible_role_docker_registry
+    version: *
+    
+  - name: lordoftheflies.ansible_role_docker_server
+    version: *
+    
