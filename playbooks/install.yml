@@ -65,7 +65,7 @@
       state: present
     - role: lordoftheflies.ansible_role_docker_registry
       state: present
-    - role: lordoftheflies.nagios_remote_plugin_executor
+    - role: lordoftheflies.ansible_role_nagios_remote_plugin_executor
       state: present
 
 - name: "Install Nexus Repository Manager"

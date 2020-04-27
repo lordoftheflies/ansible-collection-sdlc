@@ -1,6 +1,6 @@
 ---
 collections:
-  - name: lordoftheflies.freeipa_collection
+  - name: lordoftheflies.ansible_collection_freeipa
     version: '*'
     source: https://galaxy.ansible.com
 
@@ -10,73 +10,153 @@ roles:
 #    version: master
 #    scm: git
 
-  - name: lordoftheflies.common_role
-    src: git@github.com:lordoftheflies/common_role.git
+  - name: lordoftheflies.ansible_role_reverse_proxy
+    src: git@github.com:lordoftheflies/ansible-role-reverse-proxy.git
     version: master
     scm: git
 
-  - name: lordoftheflies.virtualhost_role
-    src: git@github.com:lordoftheflies/virtualhost_role.git
+  - name: lordoftheflies.ansible_role_virtualhost
+    src: git@github.com:lordoftheflies/ansible-role-virtualhost.git
     version: master
     scm: git
 
-  - name: lordoftheflies.ssl_role
-    src: git@github.com:lordoftheflies/ssl_role.git
+  - name: lordoftheflies.ansible_role_ssl
+    src: git@github.com:lordoftheflies/ansible-role-ssl.git
     version: master
     scm: git
 
-  - name: lordoftheflies.timezone_role
-    src: git@github.com:lordoftheflies/timezone_role.git
+  - name: lordoftheflies.ansible_role_timezone
+    src: git@github.com:lordoftheflies/ansible-role-timezone.git
     version: master
     scm: git
 
-  - name: lordoftheflies.nagios_role
-    src: git@github.com:lordoftheflies/nagios_role.git
+  - name: lordoftheflies.ansible_role_locale
+    src: git@github.com:lordoftheflies/ansible-role-locale.git
     version: master
     scm: git
 
-  - name: lordoftheflies.apache2_role
-    src: git@github.com:lordoftheflies/apache2_role.git
+  - name: lordoftheflies.ansible_role_apache2
+    src: git@github.com:lordoftheflies/ansible-role-apache2.git
     version: master
     scm: git
 
-  - name: lordoftheflies.java_role
-    src: git@github.com:lordoftheflies/java_role.git
+  - name: lordoftheflies.ansible_role_nginx
+    src: git@github.com:lordoftheflies/ansible-role-nginx.git
     version: master
     scm: git
 
-  - name: lordoftheflies.python_role
-    src: git@github.com:lordoftheflies/python_role.git
+  - name: lordoftheflies.ansible_role_java
+    src: git@github.com:lordoftheflies/ansible-role-java.git
     version: master
     scm: git
 
-  - name: lordoftheflies.nodejs_role
-    src: git@github.com:lordoftheflies/nodejs_role.git
+  - name: lordoftheflies.ansible_role_python
+    src: git@github.com:lordoftheflies/ansible-role-python.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_nodejs
+    src: git@github.com:lordoftheflies/ansible-role-nodejs.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_mysql
+    src: git@github.com:lordoftheflies/ansible-role-mysql.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_postgresql
+    src: git@github.com:lordoftheflies/ansible-role-postgresql.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_vagrant
+    src: git@github.com:lordoftheflies/ansible-role-vagrant.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_nagios_core
+    src: git@github.com:lordoftheflies/ansible-role-nagios-core.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_nagios_remote_plugin_executor
+    src: git@github.com:lordoftheflies/ansible-role-nagios-remote-plugin-executor.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_nexus
+    src: git@github.com:lordoftheflies/ansible-role-nexus.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_sonarqube
+    src: git@github.com:lordoftheflies/ansible-role-sonarqube.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_mattermost
+    src: git@github.com:lordoftheflies/ansible-role-mattermost.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_sentry
+    src: git@github.com:lordoftheflies/ansible-role-sentry.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_prometheus
+    src: git@github.com:lordoftheflies/ansible-role-prometheus.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_grafana
+    src: git@github.com:lordoftheflies/ansible-role-grafana.git
+    version: master
+    scm: git
+
+  - name: lordoftheflies.ansible_role_wildfly
+    src: git@github.com:lordoftheflies/ansible-role-wildfly.git
     version: master
     scm: git
 
 
-  - name: lordoftheflies.gitlab_role
-    src: git@github.com:lordoftheflies/gitlab_role.git
+  - name: lordoftheflies.ansible_role_plantuml
+    src: git@github.com:lordoftheflies/ansible-role-plantuml.git
     version: master
     scm: git
 
-  - name: lordoftheflies.jenkins_role
-    src: git@github.com:lordoftheflies/jenkins_role.git
+  - name: lordoftheflies.ansible_role_elasticsearch
+    src: git@github.com:lordoftheflies/ansible-role-elasticsearch.git
     version: master
     scm: git
 
-  - name: lordoftheflies.nexus_role
-    src: git@github.com:lordoftheflies/nexus_role.git
+  - name: lordoftheflies.ansible_role_logstash
+    src: git@github.com:lordoftheflies/ansible-role-logstash.git
     version: master
     scm: git
 
-  - name: lordoftheflies.sentry_role
-    src: git@github.com:lordoftheflies/sentry_role.git
+  - name: lordoftheflies.ansible_role_kibana
+    src: git@github.com:lordoftheflies/ansible-role-kibana.git
     version: master
     scm: git
 
-  - name: lordoftheflies.prometheus_role
-    src: git@github.com:lordoftheflies/prometheus_role.git
+  - name: lordoftheflies.ansible_role_gitlab_server
+    src: git@github.com:lordoftheflies/ansible-role-gitlab-server.git
+    version: master
+    scm: git
+    
+  - name: lordoftheflies.ansible_role_gitlab_runner
+    src: git@github.com:lordoftheflies/ansible-role-gitlab-runner.git
+    version: master
+    scm: git
+    
+  - name: lordoftheflies.ansible_role_docker_registry
+    src: git@github.com:lordoftheflies/ansible-role-docker-registry.git
+    version: master
+    scm: git
+    
+  - name: lordoftheflies.ansible_role_docker_server
+    src: git@github.com:lordoftheflies/ansible-role-docker-server.git
     version: master
     scm: git
