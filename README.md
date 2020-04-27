@@ -1,5 +1,5 @@
-# Ansible Collection - 
-Collection name:`lordoftheflies.ansible_collection_cherubits`
+# Ansible Collection for Software Development Life-Cycle
+Collection name:`lordoftheflies.ansible_collection_sdlc`
 
 Documentation for the collection.
 
@@ -18,5 +18,5 @@ ansible-galaxy role install -r requirements.yml
 Play site:
 
 ```shell script
-ansible-playbook site.yml -K
+ansible-playbook install.yml -K
 ```
