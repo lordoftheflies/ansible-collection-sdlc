@@ -3,233 +3,252 @@
 #  hosts: localhost
 #  include_task: tasks/report.yml
 
-
-
-- name: "Initialize virtual private servers"
-  hosts: vps_nodes
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_locale
-      state: present
-    - role: lordoftheflies.ansible_role_timezone
-      state: present
-    - role: lordoftheflies.ansible_role_java
-      state: present
-    - role: lordoftheflies.ansible_role_python
-      state: present
-    - role: lordoftheflies.ansible_role_nodejs
-      state: present
-    - role: lordoftheflies.ansible_role_mysql
-      state: present
-    - role: lordoftheflies.ansible_role_postgresql
-      state: present
-    - role: lordoftheflies.ansible_role_vagrant
-      state: present
-
+#
+#
+#- name: "Initialize virtual private servers"
+#  hosts: virtual_server_nodes
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_locale
+#      state: present
+#    - role: lordoftheflies.ansible_role_timezone
+#      state: present
+#    - role: lordoftheflies.ansible_role_java
+#      state: present
+#    - role: lordoftheflies.ansible_role_python
+#      state: present
+#    - role: lordoftheflies.ansible_role_nodejs
+#      state: present
+#    - role: lordoftheflies.ansible_role_mysql
+#      state: present
+#    - role: lordoftheflies.ansible_role_postgresql
+#      state: present
+#    - role: lordoftheflies.ansible_role_vagrant
+#      state: present
+#
 - name: "Install internal policy audit servers"
   hosts: ipaservers
   become: true
   roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: present
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: present
     - role: ipaserver
       state: present
-    - role: lordoftheflies.ansible_role_reverse_proxy
-      state: present
-
-- name: "Install Nagios Core"
-  hosts: nagios_cores
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
-    - role: ipaclient
-      state: present
-    - role: lordoftheflies.ansible_role_nagios_core
-      state: present
-
-
-- name: "Install Docker Registry"
-  hosts: docker_registries
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
-    - role: ipaclient
-      state: present
-    - role: lordoftheflies.ansible_role_docker_registry
-      state: present
-    - role: lordoftheflies.ansible_role_nagios_remote_plugin_executor
-      state: present
-
-- name: "Install Nexus Repository Manager"
-  hosts: nexus_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
-    - role: ipaclient
-      state: present
-    - role: lordoftheflies.ansible_role_nexus
-      state: present
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: present
+  pre_tasks:
+    - name: "Include IPA server variables"
+      include_vars: vars/ipa.yml
+  post_tasks:
+    - name: "Include IPA user-groups"
+      include_tasks: tasks/groups.yml
+    - name: "Include IPA users"
+      include_tasks: tasks/users.yml
+    - name: "Include IPA hosts"
+      include_tasks: tasks/hosts.yml
+    - name: "Include IPA host-groups"
+      include_tasks: tasks/host-groups.yml
+    - name: "Include IPA topology"
+      include_tasks: tasks/topology.yml
 
 
-- name: "Install Sonarqube Continuous Inspection Server"
-  hosts: sonarqube_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
-    - role: ipaclient
-      state: present
-    - role: lordoftheflies.ansible_role_sonarqube
-      state: present
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: present
+#    - role: lordoftheflies.ansible_role_reverse_proxy
+#      state: present
+#
+#- name: "Install Nagios Core"
+#  hosts: nagios_cores
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: present
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: lordoftheflies.ansible_role_nagios_core
+#      state: present
+#
+#
+#- name: "Install Docker Registry"
+#  hosts: docker_registries
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: present
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: lordoftheflies.ansible_role_docker_registry
+#      state: present
+#    - role: lordoftheflies.ansible_role_nagios_remote_plugin_executor
+#      state: present
 
+#- name: "Install Nexus Repository Manager"
+#  hosts: nexus_servers
+#  become: true
+#  roles:
+##    - role: lordoftheflies.ansible_role_ssl
+##      state: present
+##    - role: lordoftheflies.ansible_role_virtualhost
+##      state: present
+##    - role: ipaclient
+##      state: present
+#    - role: lordoftheflies.ansible_role_nexus
+#      state: present
+#  pre_tasks:
+#    - name: "Include Nexus Repository Manager variables"
+#      include_vars: vars/nexus.yml
+##    - role: lordoftheflies.nagios_remote_plugin_executor
+##      state: present
 
-- name: "Install Mattermost Instant Messaging"
-  hosts: mattermost_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
-    - role: ipaclient
-      state: present
-    - role: lordoftheflies.ansible_role_mattermost
-      state: present
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: present
-
-- name: "Install Sentry bug tracker"
-  hosts: sentries
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
-    - role: ipaclient
-      state: present
-    - role: lordoftheflies.ansible_role_sentry
-      state: present
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: present
-
-
-- name: "Install Wildfly Application Servers"
-  hosts: wildflies
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
-    - role: ipaclient
-      state: present
-    - role: lordoftheflies.ansible_role_wildfly
-      state: present
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: present
-
-
-- name: "Install PlantUML server"
-  hosts: plantuml_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
-    - role: ipaclient
-      state: present
-    - role: lordoftheflies.ansible_role_plantuml
-      state: present
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: present
-
-
-- name: "Install Prometheus Server"
-  hosts: prometheus_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
-    - role: ipaclient
-      state: present
-    - role: lordoftheflies.ansible_role_prometheus
-      state: present
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: present
-
-
-- name: "Install ELK stack"
-  hosts: elk_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
-    - role: ipaclient
-      state: present
-    - role: lordoftheflies.ansible_role_elasticsearch
-      state: present
-    - role: lordoftheflies.ansible_role_logstash
-      state: present
-    - role: lordoftheflies.ansible_role_kibana
-      state: present
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: present
-
-
-- name: "Install GitLab Server"
-  hosts: gitlab_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
-    - role: ipaclient
-      state: present
-    - role: lordoftheflies.ansible_role_gitlab_server
-      state: present
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: present
-
-
-- name: "Install GitLab Runners"
-  hosts: gitlab_runners
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: present
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: present
-    - role: ipaclient
-      state: present
-    - role: lordoftheflies.ansible_role_gitlab_runner
-      state: present
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: present
-
+#
+#- name: "Install Sonarqube Continuous Inspection Server"
+#  hosts: sonarqube_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: present
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: lordoftheflies.ansible_role_sonarqube
+#      state: present
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: present
+#
+#
+#- name: "Install Mattermost Instant Messaging"
+#  hosts: mattermost_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: present
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: lordoftheflies.ansible_role_mattermost
+#      state: present
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: present
+#
+#- name: "Install Sentry bug tracker"
+#  hosts: sentries
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: present
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: lordoftheflies.ansible_role_sentry
+#      state: present
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: present
+#
+#
+#- name: "Install Wildfly Application Servers"
+#  hosts: wildflies
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: present
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: lordoftheflies.ansible_role_wildfly
+#      state: present
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: present
+#
+#
+#- name: "Install PlantUML server"
+#  hosts: plantuml_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: present
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: lordoftheflies.ansible_role_plantuml
+#      state: present
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: present
+#
+#
+#- name: "Install Prometheus Server"
+#  hosts: prometheus_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: present
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: lordoftheflies.ansible_role_prometheus
+#      state: present
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: present
+#
+#
+#- name: "Install ELK stack"
+#  hosts: elk_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: present
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: lordoftheflies.ansible_role_elasticsearch
+#      state: present
+#    - role: lordoftheflies.ansible_role_logstash
+#      state: present
+#    - role: lordoftheflies.ansible_role_kibana
+#      state: present
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: present
+#
+#
+#- name: "Install GitLab Server"
+#  hosts: gitlab_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: present
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: lordoftheflies.ansible_role_gitlab_server
+#      state: present
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: present
+#
+#
+#- name: "Install GitLab Runners"
+#  hosts: gitlab_runners
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: present
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: present
+#    - role: ipaclient
+#      state: present
+#    - role: lordoftheflies.ansible_role_gitlab_runner
+#      state: present
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: present
+#
 
 
 #- name: "Install private virtual servers"

@@ -1,0 +1,9 @@
+---
+- name: "Add IPA host-groups ..."
+  ipahostgroup:
+    ipaadmin_password: "{{ ipaadmin_password }}"
+    name: "{{ group }}"
+    host: "{{ query('inventory_hostnames', group) | list }}"
+  loop: "{{ groups['all'] }}"
+  loop_control:
+    loop_var: group

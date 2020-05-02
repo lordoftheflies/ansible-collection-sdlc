@@ -1,225 +1,225 @@
 ---
 
-- name: "Initialize virtual private servers"
-  hosts: vps_nodes
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_locale
-      state: absent
-    - role: lordoftheflies.ansible_role_timezone
-      state: absent
-    - role: lordoftheflies.ansible_role_java
-      state: absent
-    - role: lordoftheflies.ansible_role_python
-      state: absent
-    - role: lordoftheflies.ansible_role_nodejs
-      state: absent
-    - role: lordoftheflies.ansible_role_mysql
-      state: absent
-    - role: lordoftheflies.ansible_role_postgresql
-      state: absent
-    - role: lordoftheflies.ansible_role_vagrant
-      state: absent
+#- name: "Initialize virtual private servers"
+#  hosts: virtual_server_nodes
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_locale
+#      state: absent
+#    - role: lordoftheflies.ansible_role_timezone
+#      state: absent
+#    - role: lordoftheflies.ansible_role_java
+#      state: absent
+#    - role: lordoftheflies.ansible_role_python
+#      state: absent
+#    - role: lordoftheflies.ansible_role_nodejs
+#      state: absent
+#    - role: lordoftheflies.ansible_role_mysql
+#      state: absent
+#    - role: lordoftheflies.ansible_role_postgresql
+#      state: absent
+#    - role: lordoftheflies.ansible_role_vagrant
+#      state: absent
 
 - name: "Remove internal policy audit servers"
   hosts: ipaservers
   become: true
   roles:
-    - role: lordoftheflies.ssl_role
-      state: absent
-    - role: lordoftheflies.virtualhost_role
-      state: absent
+#    - role: lordoftheflies.ssl_role
+#      state: absent
+#    - role: lordoftheflies.virtualhost_role
+#      state: absent
     - role: ipaserver
       state: absent
-
-- name: "Remove Nagios Core"
-  hosts: nagios_cores
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: absent
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: absent
-    - role: ipaclient
-      state: absent
-    - role: lordoftheflies.ansible_role_nagios_core
-      state: absent
-
-
-- name: "Remove Docker Registry"
-  hosts: docker_registries
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: absent
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: absent
-    - role: ipaclient
-      state: absent
-    - role: lordoftheflies.ansible_role_docker_registry
-      state: absent
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: absent
-
-- name: "Remove Nexus Repository Manager"
-  hosts: nexus_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: absent
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: absent
-    - role: ipaclient
-      state: absent
-    - role: lordoftheflies.ansible_role_nexus
-      state: absent
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: absent
-
-
-- name: "Remove Sonarqube Continuous Inspection Server"
-  hosts: sonarqube_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: absent
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: absent
-    - role: ipaclient
-      state: absent
-    - role: lordoftheflies.ansible_role_sonarqube
-      state: absent
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: absent
-
-
-- name: "Remove Mattermost Instant Messaging"
-  hosts: mattermost_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: absent
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: absent
-    - role: ipaclient
-      state: absent
-    - role: lordoftheflies.ansible_role_mattermost
-      state: absent
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: absent
-
-- name: "Remove Sentry bug tracker"
-  hosts: sentries
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: absent
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: absent
-    - role: ipaclient
-      state: absent
-    - role: lordoftheflies.ansible_role_sentry
-      state: absent
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: absent
-
-
-- name: "Remove Wildfly Application Servers"
-  hosts: wildflies
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: absent
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: absent
-    - role: ipaclient
-      state: absent
-    - role: lordoftheflies.ansible_role_wildfly
-      state: absent
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: absent
-
-
-- name: "Remove PlantUML server"
-  hosts: plantuml_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: absent
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: absent
-    - role: ipaclient
-      state: absent
-    - role: lordoftheflies.ansible_role_plantuml
-      state: absent
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: absent
-
-
-- name: "Remove Prometheus Server"
-  hosts: prometheus_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: absent
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: absent
-    - role: ipaclient
-      state: absent
-    - role: lordoftheflies.ansible_role_prometheus
-      state: absent
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: absent
-
-
-- name: "Remove ELK stack"
-  hosts: elk_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: absent
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: absent
-    - role: ipaclient
-      state: absent
-    - role: lordoftheflies.ansible_role_elasticsearch
-      state: absent
-    - role: lordoftheflies.ansible_role_logstash
-      state: absent
-    - role: lordoftheflies.ansible_role_kibana
-      state: absent
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: absent
-
-
-- name: "Remove GitLab Server"
-  hosts: gitlab_servers
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: absent
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: absent
-    - role: ipaclient
-      state: absent
-    - role: lordoftheflies.ansible_role_gitlab_server
-      state: absent
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: absent
-
-
-- name: "Remove GitLab Runners"
-  hosts: gitlab_runners
-  become: true
-  roles:
-    - role: lordoftheflies.ansible_role_ssl
-      state: absent
-    - role: lordoftheflies.ansible_role_virtualhost
-      state: absent
-    - role: ipaclient
-      state: absent
-    - role: lordoftheflies.ansible_role_gitlab_runner
-      state: absent
-    - role: lordoftheflies.nagios_remote_plugin_executor
-      state: absent
-
+#
+#- name: "Remove Nagios Core"
+#  hosts: nagios_cores
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: absent
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: absent
+#    - role: ipaclient
+#      state: absent
+#    - role: lordoftheflies.ansible_role_nagios_core
+#      state: absent
+#
+#
+#- name: "Remove Docker Registry"
+#  hosts: docker_registries
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: absent
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: absent
+#    - role: ipaclient
+#      state: absent
+#    - role: lordoftheflies.ansible_role_docker_registry
+#      state: absent
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: absent
+#
+#- name: "Remove Nexus Repository Manager"
+#  hosts: nexus_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: absent
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: absent
+#    - role: ipaclient
+#      state: absent
+#    - role: lordoftheflies.ansible_role_nexus
+#      state: absent
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: absent
+#
+#
+#- name: "Remove Sonarqube Continuous Inspection Server"
+#  hosts: sonarqube_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: absent
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: absent
+#    - role: ipaclient
+#      state: absent
+#    - role: lordoftheflies.ansible_role_sonarqube
+#      state: absent
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: absent
+#
+#
+#- name: "Remove Mattermost Instant Messaging"
+#  hosts: mattermost_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: absent
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: absent
+#    - role: ipaclient
+#      state: absent
+#    - role: lordoftheflies.ansible_role_mattermost
+#      state: absent
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: absent
+#
+#- name: "Remove Sentry bug tracker"
+#  hosts: sentries
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: absent
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: absent
+#    - role: ipaclient
+#      state: absent
+#    - role: lordoftheflies.ansible_role_sentry
+#      state: absent
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: absent
+#
+#
+#- name: "Remove Wildfly Application Servers"
+#  hosts: wildflies
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: absent
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: absent
+#    - role: ipaclient
+#      state: absent
+#    - role: lordoftheflies.ansible_role_wildfly
+#      state: absent
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: absent
+#
+#
+#- name: "Remove PlantUML server"
+#  hosts: plantuml_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: absent
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: absent
+#    - role: ipaclient
+#      state: absent
+#    - role: lordoftheflies.ansible_role_plantuml
+#      state: absent
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: absent
+#
+#
+#- name: "Remove Prometheus Server"
+#  hosts: prometheus_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: absent
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: absent
+#    - role: ipaclient
+#      state: absent
+#    - role: lordoftheflies.ansible_role_prometheus
+#      state: absent
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: absent
+#
+#
+#- name: "Remove ELK stack"
+#  hosts: elk_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: absent
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: absent
+#    - role: ipaclient
+#      state: absent
+#    - role: lordoftheflies.ansible_role_elasticsearch
+#      state: absent
+#    - role: lordoftheflies.ansible_role_logstash
+#      state: absent
+#    - role: lordoftheflies.ansible_role_kibana
+#      state: absent
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: absent
+#
+#
+#- name: "Remove GitLab Server"
+#  hosts: gitlab_servers
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: absent
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: absent
+#    - role: ipaclient
+#      state: absent
+#    - role: lordoftheflies.ansible_role_gitlab_server
+#      state: absent
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: absent
+#
+#
+#- name: "Remove GitLab Runners"
+#  hosts: gitlab_runners
+#  become: true
+#  roles:
+#    - role: lordoftheflies.ansible_role_ssl
+#      state: absent
+#    - role: lordoftheflies.ansible_role_virtualhost
+#      state: absent
+#    - role: ipaclient
+#      state: absent
+#    - role: lordoftheflies.ansible_role_gitlab_runner
+#      state: absent
+#    - role: lordoftheflies.nagios_remote_plugin_executor
+#      state: absent
+#

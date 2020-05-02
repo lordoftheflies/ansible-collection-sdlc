@@ -1,0 +1,22 @@
+---
+- name: "Add user {{ account.name }}"
+  become: true
+  ipauser:
+    ipaadmin_password: "{{ ipaadmin_password }}"
+    name: "{{ account.name }}"
+    first: "{{ account.first }}"
+    last: "{{ account.last }}"
+    email: "{{ account.email }}"
+    password: "{{ account.password }}"
+
+- name: "Add user-groups to {{ account.name }}"
+  become: true
+  ipagroup:
+    name: "{{ group }}"
+    action: member
+    user:
+      - "{{ account.name }}"
+    ipaadmin_password: "{{ ipaadmin_password }}"
+  with_items: "{{ account.groups }}"
+  loop_control:
+    loop_var: group

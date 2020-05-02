@@ -1,0 +1,74 @@
+---
+# Variables for Nexus Repository Manager
+nexus_version: '3.22.1-02'
+nexus_package: "nexus-{{ nexus_version }}-unix.tar.gz"
+nexus_download_dir: '/tmp'
+nexus_backup_dir: '/var/nexus-backup'
+nexus_os_group: 'nexus'
+nexus_os_user: 'nexus'
+nexus_os_max_filedescriptors: 65536
+nexus_installation_dir: '/opt'
+nexus_data_dir: '/var/nexus'
+nexus_timezone: 'UTC'
+nexus_tmp_dir: '/tmp/nexus'
+nexus_script_dir: '{{ nexus_installation_dir }}/nexus-{{ nexus_version }}/etc/scripts'
+nexus_restore_log: '/var/log/nexus-restore.log'
+nexus_backup_log: '/var/log/nexus-backup.log'
+nexus_default_port: 6000
+nexus_docker_hosted_port: 6001
+nexus_docker_proxy_port: 6003
+nexus_docker_group_port: 6005
+nexus_context_path: '/'
+# Note : admin password change subsequent to first-time install is *not implemented* yet
+nexus_admin_password: 'admin123'
+# Note : admin password change subsequent to first-time install is *not implemented* yet
+nexus_install_admin_password: 'admin123'
+nexus_anonymous_access: false
+public_hostname: 'nexus.cherubits.hu'
+nexus_branding_header: "Cherubits Repository Manager"
+nexus_branding_footer: "Last provisionned {{ ansible_date_time.iso8601 }}"
+
+ldap_connections: []
+#  # example ldap config
+#  # used as a key to update the ldap config
+#  - ldap_name: 'LDAP'
+#    # ldap or ldaps
+#    ldap_protocol: 'ldaps'
+#    ldap_hostname: 'ipa.cherubits.hu'
+#    ldap_port: 636
+#    ldap_auth: 'simple'
+#    ldap_auth_username: 'admin'
+#    ldap_auth_password: 'admin123'
+#    ldap_search_base: 'dc=cherubits,dc=hu'
+#    ldap_user_base_dn: 'uid=admin,cn=users,cn=accounts,dc=cherubits,dc=hu'
+#    ldap_user_filter: '(cn=accounts)'
+#    ldap_user_object_class: 'inetOrgPerson'
+#    ldap_user_id_attribute: 'uid'
+#    ldap_user_real_name_attribute: 'cn'
+#    ldap_user_email_attribute: 'mail'
+#    ldap_group_base_dn: 'ou=accounts'
+#    ldap_group_object_class: 'posixGroup'
+#    ldap_group_id_attribute: 'cn'
+#    ldap_group_member_attribute: 'memberUid'
+#    ldap_group_member_format: '${dn}'
+nexus_config_pypi: true
+nexus_config_docker: true
+nexus_config_raw: false
+nexus_config_rubygems: true
+nexus_config_bower: false
+nexus_config_npm: true
+nexus_config_gitlfs: false
+
+nexus_local_users: []
+  # example user item
+  # used as key to update
+  #- username: root
+  #  first_name: Nexus
+  #  last_name: Superuser
+  #  email: nexus@cherubits.hu
+  #  password: "qwe123"
+  #  roles:
+  #    - developers
+
+nexus_delete_default_repos: false
+nexus_delete_default_blobstore: false

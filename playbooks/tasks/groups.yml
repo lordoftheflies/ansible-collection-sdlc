@@ -1,0 +1,16 @@
+---
+
+- name: "Include user-groups ..."
+  include_vars: vars/groups.yml
+
+- name: "Add user-groups."
+  ipagroup:
+    ipaadmin_password: "{{ ipaadmin_password }}"
+    name: "{{ group.name }}"
+    description: "{{ group.description }}"
+    state: present
+  with_items: "{{ ipa_groups }}"
+  loop_control:
+    loop_var: group
+
+

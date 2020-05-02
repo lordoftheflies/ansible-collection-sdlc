@@ -1,0 +1,21 @@
+---
+accounts:
+
+  - name: "ansible"
+    first: "Ansible"
+    last: "Technical"
+    email: "ansible@cherubits.hu"
+    password: "qwe123"
+    groups:
+      - technicals
+
+  - name: "lordoftheflies"
+    first: "László"
+    last: "Hegedűs"
+    email: "laszlo.hegedus@cherubits.hu"
+    password: "Armageddon0"
+    groups:
+      - developers
+      - project-managers
+      - testers
+      - maintainers

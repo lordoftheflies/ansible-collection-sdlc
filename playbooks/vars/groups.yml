@@ -1,0 +1,13 @@
+---
+ipa_groups:
+  - name: "technicals"
+    description: "Technical system users."
+
+  - name: "developers"
+    description: "Solution developer users."
+  - name: "project-managers"
+    description: "Project managers."
+  - name: "maintainers"
+    description: "Solution maintainers."
+  - name: "testers"
+    description: "Solution tester users."

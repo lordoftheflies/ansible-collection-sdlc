@@ -1,0 +1,34 @@
+---
+
+- name: "Include users ..."
+  include_vars: vars/users.yml
+
+- name: "Add users"
+  include_tasks: tasks/account.yml
+  with_items: "{{ accounts }}"
+  loop_control:
+    loop_var: account
+
+- name: "Notify users about account change ..."
+  become: true
+  block:
+    - name: "Send e-mail to user."
+      with_items: "{{ accounts }}"
+      loop_control:
+        loop_var: account
+      mail:
+        host: smtp.gmail.com
+        port: 465
+        username: laszlo.hegedus@cherubits.hu
+        password: Armageddon43254325
+        subject: "[Cherubits IPA] Account Update"
+        body: "{{ lookup('template', 'templates/ipa-account-mail-body.j2') }}"
+        from: "Cherubits IPA Administrator <admin@cherubits.hu>"
+        to: "{{ account.first }} {{ account.last }} <{{ account.email }}>"
+        cc: "Cherubits IPA Technical Group <ipa@cherubits.hu>"
+        headers:
+          - Reply-To=ipa@cherubits.hu
+          - X-Special="Support"
+  rescue:
+    - name: "Print generated random password of ansible"
+      debug: var=account.password
