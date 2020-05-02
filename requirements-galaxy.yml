@@ -6,95 +6,95 @@ collections:
 
 roles:
 #  - name: lordoftheflies.ansible_webdocs
-#    version: '2.0.2'
+#    version: '*'
 
   - name: lordoftheflies.ansible_role_reverse_proxy
-    version: '2.0.2'
+    version: '2.1.8'
 
   - name: lordoftheflies.ansible_role_virtualhost
-    version: '2.0.2'
+    version: '2.2.0'
     
   - name: lordoftheflies.ansible_role_ssl
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_timezone
-    version: '2.0.2'
+    version: '2.9.1'
     
   - name: lordoftheflies.ansible_role_locale
-    version: '2.0.2'
+    version: '2.9.1'
     
   - name: lordoftheflies.ansible_role_apache2
-    version: '*'
+    version: '2.2.0'
     
   - name: lordoftheflies.ansible_role_nginx
-    version: '2.0.2'
+    version: '2.3.0'
     
   - name: lordoftheflies.ansible_role_java
-    version: '2.0.2'
+    version: '2.9.2'
     
   - name: lordoftheflies.ansible_role_python
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_nodejs
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_mysql
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_postgresql
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_vagrant
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_nagios_core
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_nagios_remote_plugin_executor
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_nexus
-    version: '2.0.2'
+    version: '2.9.5'
     
   - name: lordoftheflies.ansible_role_sonarqube
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_mattermost
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_sentry
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_prometheus
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_grafana
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_wildfly
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_plantuml
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_elasticsearch
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_logstash
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_kibana
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_gitlab_server
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_gitlab_runner
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_docker_registry
-    version: '2.0.2'
+    version: '2.1.8'
     
   - name: lordoftheflies.ansible_role_docker_server
-    version: '2.0.2'
+    version: '2.1.8'
     
