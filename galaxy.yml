@@ -1,6 +1,6 @@
 namespace: lordoftheflies
 name: ansible_collection_sdlc
-version: 1.0.2
+version: 1.0.3
 readme: README.md
 authors:
 - László Hegedűs <laszlo.hegedus@cherubits.hu>
