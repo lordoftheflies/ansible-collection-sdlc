@@ -1,7 +1,7 @@
 ---
 collections:
-  - name: lordoftheflies.ansible_collection_freeipa
-    version: '1.0.3'
+  - name: freeipa.ansible_freeipa
+    version: '0.1.10'
     source: https://galaxy.ansible.com
 
 roles:
